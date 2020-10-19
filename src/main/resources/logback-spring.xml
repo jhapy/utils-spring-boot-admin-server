@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+  <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+  <springProperty scope="context" name="appName" source="spring.application.name"/>
+  <springProperty scope="context" name="env" source="info.tags.environment"/>
+
+  <springProfile name="graylog">
+    <appender name="GELF" class="biz.paluch.logging.gelf.logback.GelfLogbackAppender">
+      <param name="threshold" value="INFO"/>
+      <param name="host" value="udp:graylog_graylog"/>
+      <param name="port" value="12201"/>
+      <param name="version" value="1.1"/>
+      <param name="facility" value="gelf-test"/>
+      <param name="extractStackTrace" value="true"/>
+      <param name="filterStackTrace" value="true"/>
+      <param name="includeLocation" value="true"/>
+      <param name="mdcProfiling" value="true"/>
+      <param name="timestampPattern" value="yyyy-MM-dd HH:mm:ss,SSSS"/>
+      <param name="maximumMessageSize" value="8192"/>
+      <param name="includeFullMdc" value="true"/>
+
+      <param name="additionalFields" value="APP=${appName},ENV=${env}"/>
+      <param name="additionalFieldTypes" value="APP=String,ENV=String"/>
+    </appender>
+  </springProfile>
+
+  <springProfile name="dev,test,staging,k8s-test">
+    <logger level="DEBUG" name="org.jhapy"/>
+    <logger level="INFO" name="org.springframework"/>
+
+    <root level="INFO">
+      <appender-ref ref="CONSOLE"/>
+      <!--appender-ref ref="GELF"/-->
+    </root>
+  </springProfile>
+
+  <springProfile name="prod">
+    <logger level="INFO" name="org.jhapy"/>
+    <logger level="INFO" name="org.springframework"/>
+
+    <root level="INFO">
+      <appender-ref ref="CONSOLE"/>
+      <appender-ref ref="GELF"/>
+    </root>
+  </springProfile>
+
+  <springProfile name="local,k8s-local">
+    <logger level="DEBUG" name="org.jhapy"/>
+    <logger level="INFO" name="org.springframework"/>
+
+    <root level="INFO">
+      <appender-ref ref="CONSOLE"/>
+    </root>
+  </springProfile>
+</configuration>
