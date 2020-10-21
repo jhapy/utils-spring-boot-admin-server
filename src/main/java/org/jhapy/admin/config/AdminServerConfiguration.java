@@ -27,15 +27,16 @@ public class AdminServerConfiguration extends AdminServerAutoConfiguration {
   @Bean
   @Order(0)
   @ConditionalOnMissingBean
-  public BearerAuthHeaderProvider bearerAuthHeaderProvider(@Value("${security.oauth2.client.accessTokenUri}") String accessTokenUri) {
+  public BearerAuthHeaderProvider bearerAuthHeaderProvider(
+      @Value("${security.oauth2.client.accessTokenUri}") String accessTokenUri,
+      @Value("${spring.security.oauth2.client.registration.oidc.client-id}") String clientId,
+      @Value("${spring.security.oauth2.client.registration.oidc.client-secret}") String clientSecret) {
     ClientCredentialsResourceDetails details = new ClientCredentialsResourceDetails();
 
-    //set you details here: id, clientid, secret, tokenendpoint
-    details.setClientId("utils-spring-boot-admin-server");
-    details.setClientSecret("0aed9af3-0a6f-44fa-b32d-53f60fb08cf7");
+    details.setClientId(clientId);
+    details.setClientSecret(clientSecret);
     details.setAccessTokenUri(accessTokenUri);
     details.setGrantType("client_credentials");
-    //details.setScope(Collections.singletonList("actuator"));
 
     return new BearerAuthHeaderProvider(new OAuth2RestTemplate(details));
   }
