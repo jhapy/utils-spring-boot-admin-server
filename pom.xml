@@ -47,6 +47,8 @@
     <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
     <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     <lombok.version>1.18.14</lombok.version>
+    <logstash-logback-encoder.version>6.4</logstash-logback-encoder.version>
+    <logstash-gelf.version>1.14.1</logstash-gelf.version>
 
     <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
 
@@ -127,6 +129,16 @@
       <artifactId>spring-security-oauth2</artifactId>
       <version>2.3.4.RELEASE</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>biz.paluch.logging</groupId>
+      <artifactId>logstash-gelf</artifactId>
+      <version>${logstash-gelf.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.logstash.logback</groupId>
+      <artifactId>logstash-logback-encoder</artifactId>
+      <version>${logstash-logback-encoder.version}</version>
     </dependency>
   </dependencies>
 
