@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.3.4.RELEASE</version>
+    <version>2.3.7.RELEASE</version>
     <relativePath/>
   </parent>
 
@@ -20,13 +20,13 @@
   <name>jHapy Framework - Spring Boot Admin Server</name>
 
   <properties>
-    <java.version>15</java.version>
+    <java.version>11</java.version>
     <maven.version>3.6.0</maven.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
-    <spring-boot-admin.version>2.3.0</spring-boot-admin.version>
+    <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+    <spring-boot-admin.version>2.3.1</spring-boot-admin.version>
 
     <docker-base-image-name>jhapy/base-image-slim:1.0</docker-base-image-name>
     <docker-target-image-name>jhapy/utils-spring-boot-admin-server:v2</docker-target-image-name>
@@ -35,9 +35,7 @@
     <profile.swagger/>
     <profile.tls/>
 
-    <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
-    <spring-boot-admin.version>2.2.3</spring-boot-admin.version>
-    <spring-boot-admin.version>2.2.3</spring-boot-admin.version>
+    <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
     <maven.required.version>3.6</maven.required.version>
@@ -46,11 +44,11 @@
     <sonar-maven-plugin.version>3.6.1.1688</sonar-maven-plugin.version>
     <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
     <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
-    <lombok.version>1.18.14</lombok.version>
+    <lombok.version>1.18.18</lombok.version>
     <logstash-logback-encoder.version>6.4</logstash-logback-encoder.version>
     <logstash-gelf.version>1.14.1</logstash-gelf.version>
 
-    <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+    <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
 
     <problem-spring-web.version>0.26.2</problem-spring-web.version>
   </properties>
@@ -126,7 +124,7 @@
     <dependency>
       <groupId>org.springframework.security.oauth</groupId>
       <artifactId>spring-security-oauth2</artifactId>
-      <version>2.3.4.RELEASE</version>
+      <version>2.3.7.RELEASE</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -163,10 +161,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -210,7 +204,7 @@
               <path>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.12</version>
+                <version>${lombok.version}</version>
               </path>
             </annotationProcessorPaths>
           </configuration>
@@ -286,47 +280,6 @@
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>${maven-clean-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>${maven-enforcer-plugin.version}</version>
-          <executions>
-            <execution>
-              <id>enforce-versions</id>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>enforce-dependencyConvergence</id>
-              <configuration>
-                <rules>
-                  <DependencyConvergence/>
-                </rules>
-                <fail>false</fail>
-              </configuration>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <rules>
-              <requireMavenVersion>
-                <message>You are running an older version of Maven. JHapy requires at least Maven
-                  ${maven.version}
-                </message>
-                <version>[${maven.version},)</version>
-              </requireMavenVersion>
-              <requireJavaVersion>
-                <message>You are running an incompatible version of JHapy. JHipster supports JDK 14
-                  to 15.
-                </message>
-                <version>[14,16)</version>
-              </requireJavaVersion>
-            </rules>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
