@@ -2,7 +2,6 @@ package org.jhapy.admin.config;
 
 import de.codecentric.boot.admin.server.config.AdminServerAutoConfiguration;
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
-import java.util.Collections;
 import org.jhapy.admin.client.BearerAuthHeaderProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

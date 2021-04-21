@@ -1,4 +1,5 @@
 package org.jhapy.admin.client;
+
 import de.codecentric.boot.admin.server.domain.entities.Instance;
 import de.codecentric.boot.admin.server.web.client.HttpHeadersProvider;
 import org.jhapy.commons.utils.HasLogger;
