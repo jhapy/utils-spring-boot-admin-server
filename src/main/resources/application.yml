@@ -1,0 +1,14 @@
+spring:
+  application.name: utils-spring-boot-admin-server
+  config:
+    import: configserver:http://utils-config-server:8888/config
+  cloud:
+    config:
+      uri: http://utils-config-server:8888/config
+      fail-fast: true
+      username: admin
+      password: ${jhapy.registry.password}
+    refresh:
+      enabled: false
+  main:
+    allow-bean-definition-overriding: true
