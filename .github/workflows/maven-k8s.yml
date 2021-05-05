@@ -34,6 +34,12 @@ jobs:
         run: rm -rf ~/.m2/repository/org/jhapy
       - name: Log into Docker Hub Registry
         run: echo "${{ secrets.dockerhub_password }}" | docker login --username ${{ secrets.dockerhub_username }}  --password-stdin
+      - name: Configure GPG Key
+        run: |
+          echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --import
+        env:
+          GPG_SIGNING_KEY:
+            ${{ secrets.GPG_SIGNING_KEY }}
       - name: Build with Maven
         run: mvn -Pk8s -Dmaven.test.skip -s .settings.xml -Dmaven.javadoc.skip -Dossrh_username=${{secrets.ossrh_username}} -Dossrh_password=${{secrets.ossrh_password}} --file pom.xml deploy jib:build
       - name: Slack Success
