@@ -20,7 +20,7 @@ public class BearerAuthHeaderProvider implements HttpHeadersProvider, HasLogger 
   }
 
   public HttpHeaders getHeaders(Instance ignored) {
-    String loggerPrefix = getLoggerPrefix("getHeaders", ignored);
+    var loggerPrefix = getLoggerPrefix("getHeaders", ignored);
 
     logger()
         .debug(loggerPrefix + "Generate Token of type " + template.getAccessToken().getTokenType());
