@@ -1,7 +1,7 @@
 spring:
   application.name: utils-spring-boot-admin-server
   config:
-    import: consul:localhost:8500
+    import: optional:consul:localhost:8500
   cloud:
     consul:
       config:

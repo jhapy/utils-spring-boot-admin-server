@@ -26,7 +26,7 @@
     </appender>
   </springProfile>
 
-  <springProfile name="dev,test,staging,k8s-test">
+  <springProfile name="dev,test,staging,preprod,k8s-test">
     <logger level="DEBUG" name="org.jhapy"/>
     <logger level="INFO" name="org.springframework"/>
 
