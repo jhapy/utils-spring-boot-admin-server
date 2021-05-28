@@ -1,4 +1,4 @@
-FROM jhapy/base-image-slim
+FROM jhapy/base-image-slim:1.16
 
 ENV JAVA_OPTS=""
 ENV APP_OPTS=""
